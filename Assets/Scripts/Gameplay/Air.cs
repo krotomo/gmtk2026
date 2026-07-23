@@ -35,11 +35,13 @@ public class Air : MonoBehaviour
     }
     public void OnAirPocketEnter(AirPocket pocket)
     {
+        Debug.Log("I entered an air pocket.");
         isInAirPocket = true;
         currentAirPocket = pocket;
     }
     public void OnAirPocketExit()
     {
+        Debug.Log("I exited an air pocket.");
         isInAirPocket = false;
         currentAirPocket = null;
     }

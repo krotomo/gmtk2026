@@ -27,4 +27,18 @@ public class AirPocket : MonoBehaviour
             }
         }else return 0;
     }
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Player entered air pocket.");
+            other.GetComponent<Air>().OnAirPocketEnter(this);
+        }    
+    }
+    void OnTriggerExit2D(Collider2D other) {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Player exited air pocket.");
+            other.GetComponent<Air>().OnAirPocketExit();
+        }    
+    }
 }
