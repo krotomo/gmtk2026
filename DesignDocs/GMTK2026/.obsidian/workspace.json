@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "COUNT DOWN - Ideas.md",
+                "file": "Fool's Errand - Technical Architecture.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "COUNT DOWN - Ideas"
+              "title": "Fool's Errand - Technical Architecture"
             }
           }
         ]
@@ -110,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "COUNT DOWN - Ideas.md",
+                "file": "Fool's Errand - Technical Architecture.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -120,7 +120,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for COUNT DOWN - Ideas"
+              "title": "Backlinks for Fool's Errand - Technical Architecture"
             }
           },
           {
@@ -129,12 +129,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "COUNT DOWN - Ideas.md",
+                "file": "Fool's Errand - Technical Architecture.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from COUNT DOWN - Ideas"
+              "title": "Outgoing links from Fool's Errand - Technical Architecture"
             }
           },
           {
@@ -172,13 +172,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "COUNT DOWN - Ideas.md",
+                "file": "Fool's Errand - Technical Architecture.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of COUNT DOWN - Ideas"
+              "title": "Outline of Fool's Errand - Technical Architecture"
             }
           }
         ]
@@ -202,6 +202,8 @@
   "active": "18ec00665672101a",
   "lastOpenFiles": [
     "Template GDD.md",
+    "Fool's Errand.md",
+    "Fool's Errand - Technical Architecture.md",
     "COUNT DOWN - Ideas.md",
     "Welcome.md",
     "Game Design"

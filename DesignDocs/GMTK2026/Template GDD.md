@@ -51,7 +51,7 @@
 ## 5. Technical & Progression Systems
 ### Game Systems / Variables
 * Define how global logic works.
-* Link to technical architectures: [[Technical Architecture]]
+* Link to technical architectures: [[Fool's Errand - Technical Architecture]]
 
 ### Meta-Progression & Economy
 * How does the player permanently power up?

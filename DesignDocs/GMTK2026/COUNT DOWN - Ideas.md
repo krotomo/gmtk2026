@@ -19,5 +19,7 @@ Concept 6: 2d rhythm game? (almost definitely impossible in the time frame, but 
 
 Concept 7: 2d incremental game. You have aspirations toward scrooge mcduck wealth, a literal money pit. You've gotten it started, but you need a lot more money. Typical incremental gameplay loop, upgrades to income with scaling cost, larger amounts of money unlock better ways of earning money, but be careful! The more money you earn, the larger the hole gets, the faster it disappears into the pit, and once it's in the pit it can no longer be spent. Goal is to earn enough money to fill the hole completely without running out of usable funds partway.
 
+Concept 8: 2d puzzle game. You're presented with a bomb, and a timer. You must defuse the bomb before the timer completes.
+
 - Alright, think that's all I've got for the moment, hopefully something here tracks
 
