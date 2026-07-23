@@ -1,8 +1,8 @@
 using UnityEngine;
+using System;
 
 public class Air : MonoBehaviour
 {
-    
     [SerializeField] float maximumAirCapacity = 100f;
     float currentAir;
     bool isInAirPocket;
@@ -12,6 +12,7 @@ public class Air : MonoBehaviour
     //Field for modifiers from excessive movement, or other effects, on air consumption
     [SerializeField] float airDecayModifier = 0f;
     [SerializeField] float airGainAmount = 10.0f;
+    public event Action EventAirChanged;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,7 +33,21 @@ public class Air : MonoBehaviour
             //Controls for framerate in air consumption
             currentAir -= ((airDecayAmount + airDecayModifier) * Time.deltaTime);
         }
+        OnAirChanged();
     }
+
+    void OnAirChanged()
+    {
+        EventAirChanged?.Invoke();
+    }
+
+    //Exposed for UI
+    public float GetAirPercent()
+    {
+        return (currentAir / maximumAirCapacity);
+    }
+
+    //Tracking air pocket occupancy
     public void OnAirPocketEnter(AirPocket pocket)
     {
         Debug.Log("I entered an air pocket.");
