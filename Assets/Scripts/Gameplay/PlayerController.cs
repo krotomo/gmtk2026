@@ -5,8 +5,8 @@ public class PlayerController : MonoBehaviour
 {
     // Fields related to input bindings and lookup
     [SerializeField] InputActionAsset inputActionAsset;
-    InputAction LeftKick;
-    InputAction RightKick;
+    InputAction KickLeft;
+    InputAction KickRight;
     InputAction Look;
     // Fields for reference to relevant rigidbodies
     [SerializeField] private Rigidbody2D torsoRb;
@@ -38,9 +38,12 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         if(inputActionAsset != null){
-            LeftKick = inputActionAsset.FindAction("KickLeft");
-            RightKick = inputActionAsset.FindAction("KickRight");
+            KickLeft = inputActionAsset.FindAction("KickLeft");
+            KickRight = inputActionAsset.FindAction("KickRight");
             Look = inputActionAsset.FindAction("Look");
+            KickLeft.Enable();
+            KickRight.Enable();
+            Look.Enable();
         }
         ResetLegChargeValues();
         GameManager.instance.EventPlaying += HandleInput;
@@ -70,7 +73,7 @@ public class PlayerController : MonoBehaviour
     {
         //Left leg first
         //If the left kick button is pressed, add to charge
-        if (LeftKick.IsPressed())
+        if (KickLeft.IsPressed())
         {
             leftLegCharge = Mathf.Clamp(leftLegCharge + (leftLegChargeRate * Time.deltaTime), 0, leftLegMaxCharge);
         }
@@ -80,7 +83,7 @@ public class PlayerController : MonoBehaviour
             ApplyKick(true);
         }
         //Then the right
-        if (RightKick.IsPressed())
+        if (KickRight.IsPressed())
         {
             rightLegCharge = Mathf.Clamp(rightLegCharge + (rightLegChargeRate * Time.deltaTime), 0, rightLegMaxCharge);
         }
