@@ -1,2 +1,4 @@
 #Exclude design documentation from Unity's asset database
 DesignDocs/
+#Exclude flstudio files from Unity's asset database
+FLStudio/
