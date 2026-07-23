@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6198223377551612612}
   - component: {fileID: 4567747064380860715}
+  - component: {fileID: 2226896308395021270}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -49,6 +50,29 @@ MonoBehaviour:
   airDecayAmount: 1
   airDecayModifier: 0
   airGainAmount: 10
+--- !u!114 &2226896308395021270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206498046702959239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aabaa8fa14db704985dd46030dfbf68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  inputActionAsset: {fileID: -944628639613478452, guid: 3b424e6586ceaed408c4cfc0e5431897, type: 3}
+  torsoRb: {fileID: 9030897699721186950}
+  leftUpperLegRb: {fileID: 4197077521671192706}
+  rightUpperLegRb: {fileID: 8466061457831271818}
+  legsMaxChargeRate: 1
+  legsMaxChargeValue: 5
+  legsTimeToMaxCharge: 5
+  kickImpulsePerUnitCharge: 10
+  kickBaseForce: 6
+  kickBaseTorque: 90
+  kickOffset: 0.5
 --- !u!1 &1149354347803829007
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,7 +118,7 @@ GameObject:
   - component: {fileID: 4197077521671192706}
   - component: {fileID: 5947141382816363553}
   - component: {fileID: 4993327179746593637}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: UpperLeg_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,8 +289,8 @@ HingeJoint2D:
     m_MaximumMotorForce: 10000
   m_UseLimits: 1
   m_AngleLimits:
-    m_LowerAngle: -30
-    m_UpperAngle: 130
+    m_LowerAngle: -20
+    m_UpperAngle: 90
 --- !u!1 &2451810804394517924
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,7 +304,7 @@ GameObject:
   - component: {fileID: 7988372054309263907}
   - component: {fileID: 8226385204397788964}
   - component: {fileID: 3576751599752675310}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LowerLeg_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -450,8 +474,8 @@ HingeJoint2D:
     m_MaximumMotorForce: 10000
   m_UseLimits: 1
   m_AngleLimits:
-    m_LowerAngle: 85
-    m_UpperAngle: 200
+    m_LowerAngle: -110
+    m_UpperAngle: 0
 --- !u!1 &3573160722209946365
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,7 +649,7 @@ GameObject:
   - component: {fileID: 6215801612705441235}
   - component: {fileID: 4507382160555180845}
   - component: {fileID: 4863861489761316164}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LowerLeg_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -795,8 +819,8 @@ HingeJoint2D:
     m_MaximumMotorForce: 10000
   m_UseLimits: 1
   m_AngleLimits:
-    m_LowerAngle: 85
-    m_UpperAngle: 200
+    m_LowerAngle: -110
+    m_UpperAngle: 0
 --- !u!1 &6969697415333602512
 GameObject:
   m_ObjectHideFlags: 0
@@ -810,7 +834,7 @@ GameObject:
   - component: {fileID: 8466061457831271818}
   - component: {fileID: 5377793639799642308}
   - component: {fileID: 1603051873514500497}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: UpperLeg_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -981,5 +1005,5 @@ HingeJoint2D:
     m_MaximumMotorForce: 10000
   m_UseLimits: 1
   m_AngleLimits:
-    m_LowerAngle: -30
-    m_UpperAngle: 130
+    m_LowerAngle: -20
+    m_UpperAngle: 90
