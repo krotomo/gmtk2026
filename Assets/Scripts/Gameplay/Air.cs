@@ -46,6 +46,24 @@ public class Air : MonoBehaviour
     {
         return (currentAir / maximumAirCapacity);
     }
+    
+    public float GetAirDrainIntensity()
+    {
+        if (isInAirPocket)
+        {
+            return 0f;
+        }
+
+        float effectiveDrain = airDecayAmount + airDecayModifier;
+        float baseDrain = airDecayAmount;
+
+        if (effectiveDrain <= baseDrain)
+        {
+            return 0f;
+        }
+
+        return Mathf.Clamp01((effectiveDrain - baseDrain) / Mathf.Max(0.0001f, baseDrain));
+    }
 
     //Tracking air pocket occupancy
     public void OnAirPocketEnter(AirPocket pocket)

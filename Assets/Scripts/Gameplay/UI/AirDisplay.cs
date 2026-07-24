@@ -8,6 +8,24 @@ public class AirDisplay : MonoBehaviour
     [SerializeField] private Air playerAir;
     [SerializeField] private Image airFillImage;
     [SerializeField] private AirDisplayColors airDisplayColors;
+    [SerializeField] private ParticleSystem bubbleParticleSystem;
+    [SerializeField] private float maxBubbleEmissionRate = 20f;
+
+    private RectTransform bubbleRectTransform;
+    private ParticleSystemRenderer bubbleRenderer;
+
+    private void Awake()
+    {
+        bubbleRectTransform = bubbleParticleSystem != null ? bubbleParticleSystem.GetComponent<RectTransform>() : null;
+        bubbleRenderer = bubbleParticleSystem != null ? bubbleParticleSystem.GetComponent<ParticleSystemRenderer>() : null;
+
+        if (bubbleRenderer != null)
+        {
+            bubbleRenderer.sortingOrder = 20;
+        }
+
+        ConfigureBubbleSystem();
+    }
 
     private void Start()
     {
@@ -17,6 +35,52 @@ public class AirDisplay : MonoBehaviour
         }
 
         UpdateAirVisual();
+    }
+
+    private void LateUpdate()
+    {
+        if (airFillImage == null || bubbleRectTransform == null)
+        {
+            return;
+        }
+
+        if (bubbleRectTransform.parent != airFillImage.rectTransform)
+        {
+            bubbleRectTransform.SetParent(airFillImage.rectTransform, false);
+            bubbleRectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+            bubbleRectTransform.anchorMax = new Vector2(0.5f, 0.5f);
+            bubbleRectTransform.pivot = new Vector2(0.5f, 0.5f);
+        }
+
+        float fillAmount = Mathf.Clamp01(airFillImage.fillAmount);
+        float barHeight = airFillImage.rectTransform.rect.height;
+
+        // This moves the emitter downward as the fill amount decreases.
+        float yOffset = barHeight * 0.5f - (barHeight * (1f - fillAmount));
+
+        bubbleRectTransform.anchoredPosition = new Vector2(0f, yOffset);
+    }
+
+    private void ConfigureBubbleSystem()
+    {
+        if (bubbleParticleSystem == null)
+        {
+            return;
+        }
+
+        var main = bubbleParticleSystem.main;
+        main.simulationSpace = ParticleSystemSimulationSpace.Local;
+        main.startLifetime = new ParticleSystem.MinMaxCurve(0.8f, 1.6f);
+        main.startSize = new ParticleSystem.MinMaxCurve(0.08f, 0.18f);
+
+        var velocity = bubbleParticleSystem.velocityOverLifetime;
+        velocity.enabled = true;
+        velocity.x = new ParticleSystem.MinMaxCurve(-0.2f, 0.2f);
+        velocity.y = new ParticleSystem.MinMaxCurve(0.6f, 1.2f);
+
+        var emission = bubbleParticleSystem.emission;
+        emission.enabled = true;
+        emission.rateOverTime = 0f;
     }
 
     private void UpdateAirVisual()
@@ -29,6 +93,34 @@ public class AirDisplay : MonoBehaviour
         float percent = Mathf.Clamp01(playerAir.GetAirPercent());
         airFillImage.fillAmount = percent;
         airFillImage.color = GetColorForPercent(percent);
+
+        SetBubbleIntensity(playerAir.GetAirDrainIntensity());
+    }
+
+    private void SetBubbleIntensity(float intensity)
+    {
+        if (bubbleParticleSystem == null)
+        {
+            return;
+        }
+
+        var emission = bubbleParticleSystem.emission;
+
+        float baseRate = 3f;
+        float boostedRate = baseRate + (intensity * maxBubbleEmissionRate);
+
+        float jitter = Mathf.Lerp(0.8f, 1.2f, Mathf.PerlinNoise(Time.time * 2f, 0.25f));
+
+        emission.rateOverTime = boostedRate * jitter;
+
+        if (boostedRate <= 0.01f)
+        {
+            bubbleParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        }
+        else if (!bubbleParticleSystem.isPlaying)
+        {
+            bubbleParticleSystem.Play();
+        }
     }
 
     private Color GetColorForPercent(float percent)
